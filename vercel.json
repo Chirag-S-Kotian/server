@@ -7,19 +7,10 @@
       }
     ],
     "routes": [
-      {
-        "src": "/api/users/(.*)",
-        "dest": "/src/routes/userRoutes.ts"
-      },
-      {
-        "src": "/api/files/(.*)",
-        "dest": "/src/routes/fileRoutes.ts"
-      }
-    ],
-    "build": {
-      "env": {
-        "NODE_ENV": "production"
-      }
+    {
+      "src": "/api/(.*)",
+      "dest": "/index.ts"
     }
+  ]
   }
   
