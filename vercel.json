@@ -18,13 +18,13 @@
     ],
     "env": {
       "PORT": "4000",
-      "DATABASE_URL": "@your-database-url",
-      "JWT_SECRET": "@your-jwt-secret",
-      "CLOUDINARY_CLOUD_NAME": "@your-cloudinary-cloud-name",
-      "CLOUDINARY_API_KEY": "@your-cloudinary-api-key",
-      "CLOUDINARY_API_SECRET": "@your-cloudinary-api-secret",
-      "MAIL_USER": "@your-email-address-for-sending-verification",
-      "MAIL_PASSWORD": "@your-email-password"
+      "DATABASE_URL": "@DATABASE_URL",
+      "JWT_SECRET": "@JWT_SECRET",
+      "CLOUDINARY_CLOUD_NAME": "@CLOUDINARY_CLOUD_NAME",
+      "CLOUDINARY_API_KEY": "@CLOUDINARY_API_KEY",
+      "CLOUDINARY_API_SECRET": "@CLOUDINARY_API_SECRET",
+      "MAIL_USER": "@MAIL_USER",
+      "MAIL_PASSWORD": "@MAIL_PASSWORD"
     },
     "build": {
       "env": {
