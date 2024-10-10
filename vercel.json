@@ -1,0 +1,35 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "src/index.ts", 
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/users/(.*)",
+        "dest": "/src/routes/userRoutes.ts"
+      },
+      {
+        "src": "/api/files/(.*)",
+        "dest": "/src/routes/fileRoutes.ts"
+      }
+    ],
+    "env": {
+      "PORT": "4000",
+      "DATABASE_URL": "@your-database-url",
+      "JWT_SECRET": "@your-jwt-secret",
+      "CLOUDINARY_CLOUD_NAME": "@your-cloudinary-cloud-name",
+      "CLOUDINARY_API_KEY": "@your-cloudinary-api-key",
+      "CLOUDINARY_API_SECRET": "@your-cloudinary-api-secret",
+      "MAIL_USER": "@your-email-address-for-sending-verification",
+      "MAIL_PASSWORD": "@your-email-password"
+    },
+    "build": {
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+  
