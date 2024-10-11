@@ -29,9 +29,9 @@ export const uploadFile = async (req: any, res: Response): Promise<void> => {
     // Create new file entry in Prisma
     const newFile = await prisma.file.create({
       data: {
-        name: name, // Use the 'name' from the request body
+        name: name, 
         url: result.secure_url,
-        userId: req.userId, // Assuming req.userId is set by authMiddleware
+        userId: req.userId,
       },
     });
 
@@ -89,7 +89,6 @@ export const updateFile = async (req: AuthenticatedRequest, res: Response): Prom
 // Delete a file
 export const deleteFile = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    // Find the file by its ID and ensure it belongs to the authenticated user
     const file = await prisma.file.findUnique({ where: { id: req.params.id, userId: req.userId } });
 
     if (!file) {
@@ -97,7 +96,7 @@ export const deleteFile = async (req: AuthenticatedRequest, res: Response): Prom
       return;
     }
 
-    const publicId = file.url.split('/').slice(-1)[0].split('.')[0]; // Extract the public_id without file extension
+    const publicId = file.url.split('/').slice(-1)[0].split('.')[0];
 
     // Delete the file from Cloudinary using the public ID
     await cloudinary.uploader.destroy(publicId);
