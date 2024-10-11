@@ -1,12 +1,19 @@
 import multer from 'multer';
 import path from 'path';
+import fs from 'fs';
+
+// Create uploads directory if it doesn't exist
+const uploadsDir = path.join(__dirname, 'dist', 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'dist/uploads/');
+    cb(null, uploadsDir); // Use the uploads directory
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
+    cb(null, `${Date.now()}-${file.originalname}`); // Append timestamp to file name
   },
 });
 
@@ -20,7 +27,7 @@ const fileFilter = (req: any, file: any, cb: any) => {
   if (extname && mimetype) {
     return cb(null, true);
   } else {
-    cb('Error: Files of this type are not allowed');
+    cb(new Error('Error: Files of this type are not allowed'));
   }
 };
 
