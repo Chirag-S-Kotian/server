@@ -32,9 +32,9 @@ const uploadFile = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         // Create new file entry in Prisma
         const newFile = yield prisma_1.default.file.create({
             data: {
-                name: name, // Use the 'name' from the request body
+                name: name,
                 url: result.secure_url,
-                userId: req.userId, // Assuming req.userId is set by authMiddleware
+                userId: req.userId,
             },
         });
         res.status(201).json(newFile);
@@ -92,13 +92,12 @@ exports.updateFile = updateFile;
 // Delete a file
 const deleteFile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // Find the file by its ID and ensure it belongs to the authenticated user
         const file = yield prisma_1.default.file.findUnique({ where: { id: req.params.id, userId: req.userId } });
         if (!file) {
             res.status(404).json({ message: 'File not found' });
             return;
         }
-        const publicId = file.url.split('/').slice(-1)[0].split('.')[0]; // Extract the public_id without file extension
+        const publicId = file.url.split('/').slice(-1)[0].split('.')[0];
         // Delete the file from Cloudinary using the public ID
         yield cloudinary_1.default.uploader.destroy(publicId);
         // Delete the file record from the database
