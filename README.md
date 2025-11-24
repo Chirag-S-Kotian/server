@@ -9,9 +9,6 @@
 
 
 
-
-
-
 # CDrive - Backend
 
 Welcome to the **CDrive** backend repository! CDrive is a cloud-based file storage system that allows users to upload, store, and manage files securely. This backend service handles user authentication, file management, and secure integration with **Cloudinary** for file storage.
